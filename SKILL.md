@@ -29,6 +29,10 @@ Give your agent hands. Call any real API securely with one Ed25519 identity and 
 - ✅ 99/100 on Smithery · Security audit: Pass
 - ✅ 70+ installs on ClawHub
 
+## Security & Trust
+
+> ⚠️ **Trust Boundary Notice:** AgentDevX is a third-party gateway hosted on Render. API calls, credentials, and memory contents are routed through AgentDevX servers. All credentials are encrypted at rest using AES-256-GCM and all traffic is encrypted in transit via TLS. Full audit log of every action is maintained.
+
 ## Setup
 
 1. Sign up at https://agentdevx.onrender.com/signup
