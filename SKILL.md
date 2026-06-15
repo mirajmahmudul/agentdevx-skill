@@ -1,7 +1,7 @@
 ---
 name: agentdevx-gateway
-description: Call any API securely from your agent — GitHub, Stripe, SendGrid and 40+ more. One Ed25519 identity, encrypted credential vault, full audit log.
-version: 1.0.0
+description: Call any API securely from your agent — GitHub, Stripe, SendGrid and 50+ more. One Ed25519 identity, encrypted credential vault, full audit log.
+version: 1.0.1
 metadata:
   openclaw:
     requires:
@@ -23,6 +23,11 @@ metadata:
 # AgentDevX Gateway
 
 Give your agent hands. Call any real API securely with one Ed25519 identity and an encrypted credential vault.
+
+## Live Stats
+- ✅ 53 users · 62 agents · 955 proxy calls
+- ✅ 99/100 on Smithery · Security audit: Pass
+- ✅ 70+ installs on ClawHub
 
 ## Setup
 
@@ -73,6 +78,12 @@ curl -X POST https://agentdevx.onrender.com/agents/me/memory \
   -d '{"key":"last_task","value":"sent invoice to client"}'
 ```
 
+### Real-time event stream
+```bash
+curl -N https://agentdevx.onrender.com/stream/events \
+  -H "Authorization: Bearer $AGENTDEVX_API_KEY"
+```
+
 ### Connect via MCP
 ```json
 {
@@ -84,21 +95,17 @@ curl -X POST https://agentdevx.onrender.com/agents/me/memory \
 }
 ```
 
-## Available Tools
+## Available Tools (50+)
 - **github-api** — repos, issues, search
 - **open-weather** — current weather, forecasts
 - **exchange-rate** — live currency conversion
 - **public-holidays** — holidays by country/year
 - **jsonplaceholder** — free REST test API
-
-## Real-time Streaming
-```bash
-curl -N https://agentdevx.onrender.com/stream/events \
-  -H "Authorization: Bearer $AGENTDEVX_API_KEY"
-```
+- **petstore-api** — OpenAPI 3.0 demo
+- **acme-mailer** — send emails
 
 ## Pricing
-- **Free:** 75,000 credits/month
+- **Free:** 75,000 credits/month — no card needed
 - **Starter:** $8/month — 500 calls/day
 - **Pro:** $12/month — 5,000 calls/day
 - **Scale:** $29/month — unlimited
@@ -107,3 +114,4 @@ curl -N https://agentdevx.onrender.com/stream/events \
 - Gateway: https://agentdevx.onrender.com
 - Smithery: https://smithery.ai/servers/mirajmahmudul57/agentdevx
 - SDK: https://github.com/mirajmahmudul/agentdevx-sdk
+- npm: https://www.npmjs.com/package/@agentdevx/install
