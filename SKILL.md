@@ -1,94 +1,60 @@
 ---
-name: agentdevx-gateway
-description: Call any API securely from your agent — GitHub, Stripe, SendGrid and 50+ more. One Ed25519 identity, encrypted credential vault, full audit log.
-version: 1.0.1
+name: agentdevx-skill
+description: Give your local AI access to 50+ real-world APIs — weather, GitHub, payments, food delivery and more. Auto-bootstraps. No config needed.
+version: 1.0.3
 metadata:
   openclaw:
     requires:
-      env:
-        - AGENTDEVX_API_KEY
       bins:
         - curl
+    homepage: https://agentdevx.onrender.com
     primaryEnv: AGENTDEVX_API_KEY
     envVars:
       - name: AGENTDEVX_API_KEY
-        required: true
-        description: Your AgentDevX JWT token from POST /agents/v1/bootstrap
+        required: false
+        description: Auto-generated on first use. Leave blank — skill bootstraps itself.
       - name: AGENTDEVX_BASE_URL
         required: false
-        description: Override the default gateway URL
-    homepage: https://agentdevx.onrender.com
+        description: "Default: https://agentdevx.onrender.com"
 ---
 
 # AgentDevX Gateway
 
-Give your agent hands. Call any real API securely with one Ed25519 identity and an encrypted credential vault.
+Give your local AI hands. Connect to 50+ real-world APIs instantly — no config, no keys, no setup.
 
-## Live Stats
-- ✅ 53 users · 62 agents · 955 proxy calls
-- ✅ 99/100 on Smithery · Security audit: Pass
-- ✅ 70+ installs on ClawHub
+Your AI auto-registers itself on first use and gets 75,000 free credits.
 
-## Security & Trust
+## What Your AI Can Do After Install
 
-> ⚠️ **Trust Boundary Notice:** AgentDevX is a third-party gateway hosted on Render. API calls, credentials, and memory contents are routed through AgentDevX servers. All credentials are encrypted at rest using AES-256-GCM and all traffic is encrypted in transit via TLS. Full audit log of every action is maintained.
+- 🍕 Order food
+- 🌤️ Get live weather
+- 💸 Check exchange rates
+- 📦 Query GitHub repos
+- 📅 Get public holidays
+- 📧 Send emails
+- 🔐 Store secrets securely
+- 🧠 Remember things between sessions
 
-## Setup
-
-1. Sign up at https://agentdevx.onrender.com/signup
-2. Bootstrap your agent:
+## Install
 
 ```bash
-PUBLIC_KEY=$(openssl rand -hex 32)
-curl -X POST https://agentdevx.onrender.com/agents/v1/bootstrap \
-  -H "Content-Type: application/json" \
-  -d "{\"name\":\"my-agent\",\"email\":\"you@example.com\",\"public_key\":\"$PUBLIC_KEY\"}"
+openclaw skills install agentdevx-skill
 ```
 
-3. Export your token:
-```bash
-export AGENTDEVX_API_KEY=<your_access_token>
-```
+That's it. Your AI is now connected to the real world.
 
-## What Your Agent Can Do
+## How It Works
 
-### Call any tool
-```bash
-curl -X POST https://agentdevx.onrender.com/proxy/call \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AGENTDEVX_API_KEY" \
-  -d '{"tool_name":"github-api","action":"getRepo","params":{"owner":"openai","repo":"openai-python"}}'
-```
+On first use your AI automatically:
+1. Generates an Ed25519 identity
+2. Bootstraps with AgentDevX
+3. Receives 75,000 free credits
+4. Gets access to all 50+ tools
 
-### Discover tools
-```bash
-curl https://agentdevx.onrender.com/tools \
-  -H "Authorization: Bearer $AGENTDEVX_API_KEY"
-```
+No human setup needed.
 
-### Store secrets (AES-256-GCM encrypted)
-```bash
-curl -X POST https://agentdevx.onrender.com/credentials \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AGENTDEVX_API_KEY" \
-  -d '{"provider_id":"stripe","type":"api_key","value":"sk_live_..."}'
-```
+## MCP Config (Claude Desktop / Cursor / Windsurf)
 
-### Save agent memory
-```bash
-curl -X POST https://agentdevx.onrender.com/agents/me/memory \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AGENTDEVX_API_KEY" \
-  -d '{"key":"last_task","value":"sent invoice to client"}'
-```
-
-### Real-time event stream
-```bash
-curl -N https://agentdevx.onrender.com/stream/events \
-  -H "Authorization: Bearer $AGENTDEVX_API_KEY"
-```
-
-### Connect via MCP
 ```json
 {
   "mcpServers": {
@@ -99,23 +65,24 @@ curl -N https://agentdevx.onrender.com/stream/events \
 }
 ```
 
-## Available Tools (50+)
-- **github-api** — repos, issues, search
-- **open-weather** — current weather, forecasts
-- **exchange-rate** — live currency conversion
-- **public-holidays** — holidays by country/year
-- **jsonplaceholder** — free REST test API
-- **petstore-api** — OpenAPI 3.0 demo
-- **acme-mailer** — send emails
+## Available Tools
 
-## Pricing
-- **Free:** 75,000 credits/month — no card needed
-- **Starter:** $8/month — 500 calls/day
-- **Pro:** $12/month — 5,000 calls/day
-- **Scale:** $29/month — unlimited
+| Tool | What It Does |
+|------|-------------|
+| open-weather | Live weather & forecasts |
+| github-api | Repos, issues, PRs |
+| exchange-rate | Live currency conversion |
+| public-holidays | Holidays by country |
+| acme-mailer | Send emails |
+| jsonplaceholder | REST API testing |
+| petstore-api | OpenAPI demo |
+
+## Security
+
+> ⚠️ **Trust Boundary:** AgentDevX is a third-party hosted gateway. API calls route through AgentDevX servers. All credentials encrypted at rest with AES-256-GCM. Full audit log of every call.
 
 ## Links
-- Gateway: https://agentdevx.onrender.com
-- Smithery: https://smithery.ai/servers/mirajmahmudul57/agentdevx
-- SDK: https://github.com/mirajmahmudul/agentdevx-sdk
-- npm: https://www.npmjs.com/package/@agentdevx/install
+
+- 🌐 Gateway: https://agentdevx.onrender.com
+- 📦 npm: https://www.npmjs.com/package/@agentdevx/install
+- 🔧 SDK: https://github.com/mirajmahmudul/agentdevx-sdk
