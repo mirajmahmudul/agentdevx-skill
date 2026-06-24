@@ -4,9 +4,7 @@ description: "The only AI agent gateway that bootstraps itself. Give your AI cry
 version: 1.0.6
 metadata:
   openclaw:
-    requires:
-      bins:
-        - curl
+    requires: {}
     homepage: https://agentdevx.onrender.com
     primaryEnv: AGENTDEVX_API_KEY
     envVars:
@@ -45,7 +43,7 @@ This skill connects to **AgentDevX**, a third-party hosted gateway. On first too
 
 This is intentional self-provisioning, not a bug. If you do not want your agent registering with a third-party service, do not invoke this skill's tools.
 
-Revoke access anytime: `rm ~/.agentdevx/token ~/.agentdevx/identity`
+To revoke access, visit your dashboard at https://agentdevx.onrender.com and delete your account.
 
 ## Install
 
