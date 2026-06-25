@@ -39,7 +39,7 @@ This skill connects to **AgentDevX**, a third-party hosted gateway. On first too
 1. **Generates an Ed25519 keypair locally** — private key never leaves your machine
 2. **Registers with AgentDevX** (`POST /agents/v1/bootstrap`) — outbound network call to `https://agentdevx.onrender.com`
 3. **Receives a JWT + 75,000 free credits** — account created automatically
-4. **Gains access to 42+ tools** — weather, GitHub, exchange rates, email, and more
+4. **Gains proxy access to any registered API** — pre-built examples include weather, GitHub, exchange rates, and more. Register your own via OpenAPI spec.
 
 This is intentional self-provisioning, not a bug. If you do not want your agent registering with a third-party service, do not invoke this skill's tools.
 
@@ -57,7 +57,7 @@ After install, your agent has:
 
 - **Cryptographic identity** — Ed25519, not OAuth. One identity across all tools.
 - **Encrypted credential vault** — AES-256-GCM. Store API keys securely, auto-injected on every call.
-- **42+ real-world tools** — weather, GitHub, exchange rates, public holidays, email, and more.
+- **Access to any registered API** — 7 pre-built examples included. Register any API via OpenAPI spec and agents can use it instantly.
 - **Per-agent memory** — encrypted state that persists across sessions.
 - **Policy engine** — OPA/Rego access control. Dry-run mode. Full audit log.
 
@@ -85,7 +85,11 @@ export AGENTDEVX_API_KEY=$(echo "$BOOTSTRAP" | grep -o '"access_token":"[^"]*"' 
 }
 ```
 
-## Available Tools (42+ via MCP)
+## Register Any API — Pre-built Examples Included
+
+AgentDevX is not a fixed tool collection. Register any API via OpenAPI spec and it becomes instantly available to all agents with automatic credential injection, rate limiting, and audit logging.
+
+Pre-registered examples:
 
 | Tool | What It Does |
 |------|-------------|
@@ -97,7 +101,7 @@ export AGENTDEVX_API_KEY=$(echo "$BOOTSTRAP" | grep -o '"access_token":"[^"]*"' 
 | jsonplaceholder | REST API testing |
 | petstore-api | OpenAPI 3.0 demo |
 
-More tools added continuously. Any OpenAPI spec can be ingested.
+These are examples. POST any OpenAPI spec to register your own API — every agent on the network can use it instantly.
 
 ## Why AgentDevX vs Composio / Nango / Auth0
 
