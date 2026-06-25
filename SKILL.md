@@ -1,6 +1,6 @@
 ---
 name: agentdevx-skill
-description: "The only AI agent gateway that bootstraps itself. Give your AI cryptographic identity, an encrypted credential vault, and access to 42+ real-world APIs — with zero human setup. Ed25519 identity, AES-256-GCM vault, OPA policy engine, full audit log."
+description: "Give your AI hands. Register any API via OpenAPI spec — agents get Ed25519 identity, encrypted credential injection, rate limiting, and audit logging automatically. One bootstrap call, zero human setup."
 version: 1.0.6
 metadata:
   openclaw:
